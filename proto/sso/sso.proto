@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "alibi.sso.v1;ssov1";
+
+service Auth {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse);
+}
+
+message RegisterRequest {
+  string email = 1; // Email is used as the username
+  string password = 2; // Password is stored securely, e.g., hashed
+}
+
+message RegisterResponse {
+  int64 user_id = 1; // Unique identifier for the user
+}
+
+message LoginRequest {
+  string email = 1; // Email used for login
+  string password = 2; // Password for authentication
+  int32 app_id = 3; // Application ID for which the user is logging in
+}
+
+message LoginResponse {
+  string token = 1; // JWT token for authenticated session
+}
+
+message IsAdminRequest {
+  bool user_id = 1; // User ID to check for admin privileges
+}
+
+message IsAdminResponse {
+  bool is_admin = 1; // Indicates if the user has admin privileges
+}
