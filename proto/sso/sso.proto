@@ -15,14 +15,6 @@ service Auth {
   rpc Logout (LogoutRequest) returns (LogoutResponse);
 }
 
-message IsAdminRequest {
-  int64 user_id = 1; // User ID to validate.
-}
-
-message IsAdminResponse {
-  bool is_admin = 1;  // Indicates whether the user is an admin.
-}
-
 message RegisterRequest {
   string email = 1; // Email of the user to register.
   string password = 2; // Password of the user to register.
@@ -48,4 +40,12 @@ message LogoutRequest {
 
 message LogoutResponse {
   bool success = 1; // Indicates whether the logout was successful.
+}
+
+message IsAdminRequest {
+  int64 user_id = 1; // User ID to validate.
+}
+
+message IsAdminResponse {
+  bool is_admin = 1;  // Indicates whether the user is an admin.
 }
